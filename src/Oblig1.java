@@ -91,14 +91,79 @@ public class Oblig1 {
 
 
 
+                                    // OPPGAVE 2
+
+    public static int antallUlikeSortert(int [] a) {
+        int teller=1;                                  // Teller satt til 1 fordi første verdi vil alltid være unik
+        for (int i = 0; i < a.length - 1; i++) {        // Looper gjennom lengden på tabellen
+            if (a[i] > a[i + 1]) {                      // Sjekker om tabellen er sortert
+                throw new IllegalStateException("Tabellen er ikke sortert" + "\n");     // Gir tilbakemelding om den ikke er sortert
+            }
+            if (a.length == 0) {        // Sjekker om tabellen er tom, hvis den er tom returner den 0
+                return 0;
+            }
+            for(i=0;i<a.length-1;i++)          // Looper igjennom tabellen
+            {
+                if(a[i]!=a[i+1])               // Sjekker om to nærliggende verdier er ulik
+                {
+                    teller++;                   // Om de er ulik, øker telleren med 1
+                }
+            }
+
+        } return teller;
+    }
+
+    // Metode som lager en tilfeldig tabell med tilfeldige verdier
+    public static int[] randomArray(int a)
+    {
+        int[] list = new int[a];            // Lager en liste med størrelse 'a'
+         for (int i=0; i<a; i++)            // Looper gjennom lengden på tabellen
+        {
+            int n = (int)(Math.random()*9 + 1); // Oppretter tilfeldige verdier
+            list[i] = n;                        // Setter verdiene inn i tabellen
+
+            System.out.print(list[i] + ", ");
+        }
+        System.out.println("\n");
+        return list;                        // Returner tabellen
+    }
+
+
+
+    public static void bubbleSort(int [] a)
+    {
+        for (int n = a.length; n > 1; n--) // For å vite antallet ganger løkken skal kjøre
+        {
+            for (int i=1; i<n; i++)        // Kjøre om i er mindre enn antallet
+            {
+                if (a[i-1]>a[i])           // Sjekker om verdien foran er større enn neste
+                {
+                    bytt(a,i-1,i);      // Bytter plass om verdien er større
+                }
+            }
+        }
+    }
+
 
     public static void main(String[] args) {
-        int [] a = randPerm(10);  // Lager en tilfeldig tabell
-        skriv(a);                   // Skriver ut tabellen før bytte
-        maks(a);                    // Utfører metoden maks og flytter største tall til a[n]
-        System.out.println("Den maksimale verdi er: " + a[a.length-1] + "\n"); // Skriver ut største verdi i tabellen a
+                                        // OPPGAVE 1
+        //int [] a = randPerm(10);  // Lager en tilfeldig tabell
+        //skriv(a);                   // Skriver ut tabellen før bytte
+        //maks(a);                    // Utfører metoden maks og flytter største tall til a[n]
+        //System.out.println("Den maksimale verdi er: " + a[a.length-1] + "\n"); // Skriver ut største verdi i tabellen a
         //skriv(a);                                                           // Skriver ut tabellen på nytt, der største tall ligger i a[n]. Kommenter vekk maks(a) for å få en helt tilfeldig tabell.
         //System.out.println("Antall ombytninger er: " + ombytninger(a) + "\n"); // Skriver ut antall ombytninger som er utført
+
+
+
+                                        // OPPGAVE 2
+
+        int [] b = randomArray(10);      // Oppretter en tabell med tilfeldige tall
+        bubbleSort(b);                      // Sorterer tabellen
+        skriv(b);                           // Skriver ut den sorterte tabellen
+        System.out.println("Antall: " + antallUlikeSortert(b));     // Skriver ut antall ulike verdier i tabellen
+
+
 
 
     }
