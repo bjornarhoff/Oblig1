@@ -130,6 +130,7 @@ public class Oblig1 {
 
 
 
+    
     public static void bubbleSort(int [] a)
     {
         for (int n = a.length; n > 1; n--) // For å vite antallet ganger løkken skal kjøre
@@ -145,6 +146,146 @@ public class Oblig1 {
     }
 
 
+    public static void quickSort(int a[], int left, int right) {
+
+        int index = partition1(a, left, right);
+
+        if (left < index - 1)
+
+            quickSort(a, left, index - 1);
+
+        if (index < right)
+
+            quickSort(a, index, right);
+
+    }
+
+   public static int partition1(int arr[], int left, int right)
+    {
+        int i = left, j = right;
+        int tmp;
+        int pivot = arr[(left + right) / 2];
+
+        while (i <= j) {
+            while (arr[i] < pivot)
+                i++;
+
+            while (arr[j] > pivot)
+                j--;
+
+            if (i <= j) {
+                tmp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = tmp;
+                i++;
+                j--;
+            }
+        }
+        return i;
+    }
+
+
+   public static int partition(int a[], int v, int h, int skilleverdi)
+   {
+       while (true)
+    {
+        while (v<= h && a[h] % 2 < skilleverdi)
+        {
+            h--;
+
+        }
+        while (v<= h && a[v] % 2 >= skilleverdi)
+        {
+            v++;
+        }
+        if (v<h)
+        {
+            bytt(a,v++,h--);
+        }
+    else return v;
+    }
+   }
+
+
+
+                                    // OPPGAVE 3
+    public static int antallUlikeUSortert(int []a) {
+        int different = 0;
+
+        for (int i = 1; i < a.length; i++) {
+            boolean same = false;
+            for (int j=0; j<i; j++) {
+                if (a[i] == a[j]) {
+                    same = true;
+                    break;
+                }
+                 }   if(!same) {
+                    different++;
+                    System.out.print(a[i] + ", ");
+                }
+            }
+        return different;
+    }
+
+
+                                // OPPGAVE 4
+
+    public static void delsortering(int [] a) {
+
+        int partall = 0;
+        int oddetall = 0;
+
+        partition(a, 0, a.length - 1, 1);
+
+        for (int i = 0; i < a.length; i++) {
+
+            if (a[i] % 2 == 0) {
+                partall = partall +1;
+            }
+            else
+                {
+                    oddetall = oddetall +1;
+                }
+
+
+
+    }
+        System.out.println(Arrays.toString(a));
+        quickSort(a,0,oddetall-1);
+        quickSort(a,oddetall,a.length-1);
+        System.out.println(Arrays.toString(a));
+
+    }
+
+
+                            // OPPGAVE 5
+
+    public static void rotasjon(char[] a) {
+        int n = a.length;
+        int d = 1;
+
+        if (n == 1) {
+            return;
+        }
+
+        if ((d = d%n) < 0) {
+            d += n;
+        }
+
+        char[] b = Arrays.copyOfRange(a, n - d, n);     // Oppretter en hjelpetabell
+
+        for (int i = n - 1; i >= d; i--) {
+            a[i] = a[i - d]; }                                 // Forskyver bokstavene en plass til høyre
+
+            System.arraycopy(b, 0, a, 0, d);                      // Kopierer arrayet
+
+    }
+
+
+
+
+
+               
     public static void main(String[] args) {
                                         // OPPGAVE 1
         //int [] a = randPerm(10);  // Lager en tilfeldig tabell
@@ -157,11 +298,32 @@ public class Oblig1 {
 
 
                                         // OPPGAVE 2
+/**
+        int [] c = randomArray(10);      // Oppretter en tabell med tilfeldige tall
+        quickSort(c,0,c.length-1);                      // Sorterer tabellen
+        skriv(c);                           // Skriver ut den sorterte tabellen
+        System.out.println("Antall: " + antallUlikeSortert(c));     // Skriver ut antall ulike verdier i tabellen */
 
-        int [] b = randomArray(10);      // Oppretter en tabell med tilfeldige tall
-        bubbleSort(b);                      // Sorterer tabellen
-        skriv(b);                           // Skriver ut den sorterte tabellen
-        System.out.println("Antall: " + antallUlikeSortert(b));     // Skriver ut antall ulike verdier i tabellen
+
+                                        // OPPGAVE 3
+        //int [] c = {1,2,1,3,5,2,1,1,6};
+        //System.out.println("\n"+"Antall ulike verdier i tabellen er:  " + antallUlikeUSortert(c));
+
+
+                                        // OPPGAVE 4
+
+        // delsortering(randomArray(10));
+
+
+                                        // OPPGAVE 5
+
+        char [] a = {'N','L','B','D','F'};
+        System.out.println(Arrays.toString(a));
+        rotasjon(a);
+        System.out.println(Arrays.toString(a));
+
+
+
 
 
 
