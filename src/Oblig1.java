@@ -1,9 +1,7 @@
 import javax.sound.midi.Soundbank;
 import java.lang.reflect.Array;
 
-import java.util.Arrays;
-import java.util.NoSuchElementException;
-import java.util.Random;
+import java.util.*;
 
 public class Oblig1 {
 
@@ -195,6 +193,7 @@ public class Oblig1 {
                 bytt(a, v++, h--);
             } else return v;
         }
+
     }
 
 
@@ -230,13 +229,18 @@ public class Oblig1 {
         {
             return;
         }
+
         partition(a, 0, a.length - 1,1);
 
         for (int i = 0; i < a.length; i++) {
 
-            if (a[i] % 2 == 0) {
+            if(a[i] < 0) {
+                a[i] = a[i] * -1;
+            }
+            if (Math.floorMod(a[i],2) == 0) {
                 partall = partall + 1;
-            } else {
+            }
+             else {
                 oddetall = oddetall + 1;
             }
 
@@ -439,11 +443,46 @@ public class Oblig1 {
 
 
 
+                        // OPPGAVE 10
+
+    public static boolean inneholdt(String a, String b) {
+        boolean status = true;
+
+        Map<String,Integer> WordA=new HashMap<>();  //Lagrer informasjon om antall unike bookstaver og antall forekomster
+        Map <String,Integer> WordB=new HashMap<>();  //Lagrer informasjon om antall unike bookstaver og antall forekomster
+
+        for(char i:a.toCharArray()){                   //kjørere gjennom første ordet A og lagrer unique bokstaver og antall forekomster i hashmap
+            Integer valueA = WordA.get(""+i);
+            if(valueA != null){
+                WordA.put(""+i, valueA+1);
+            } else {
+                WordA.put(""+i, 1);
+            }
+        }
+
+        for(char i: b.toCharArray()){               //kjørere gjennom første ordet B og lagrer unique bokstaver og antall forekomster i hashmap
+            Integer valueB = WordB.get(""+i);
+            if(valueB != null){
+                WordB.put(""+i, valueB+1);
+            } else {
+                WordB.put(""+i,1);
+            }
+        }
+
+        for(Map.Entry <String,Integer> entry: WordA.entrySet()){            //han går gjennom første ordet sine
+            if (WordB.get(entry.getKey()) == null || entry.getValue() >
+                    WordB.get(entry.getKey())) {
+                status = false;
+            }
+        }
+        return status;
+    }
 
 
 
 
-               
+
+
     public static void main(String[] args) {
                                         // OPPGAVE 1
         //int [] a = randPerm(10);  // Lager en tilfeldig tabell
