@@ -1,3 +1,4 @@
+import javax.sound.midi.Soundbank;
 import java.lang.reflect.Array;
 
 import java.util.Arrays;
@@ -113,7 +114,7 @@ public class Oblig1 {
         return teller;
     }
 
-    
+
     // Metode som lager en tilfeldig tabell med tilfeldige verdier
     public static int[] randomArray(int a) {
         int[] list = new int[a];            // Lager en liste med størrelse 'a'
@@ -222,14 +223,14 @@ public class Oblig1 {
 
     public static void delsortering(int[] a) {
 
-        int partall = 0;
-        int oddetall = 0;
+        int partall=0;
+        int oddetall=0;
 
         if(a.length == 0)
         {
             return;
         }
-        partition(a, 0, a.length - 1, 1);
+        partition(a, 0, a.length - 1,1);
 
         for (int i = 0; i < a.length; i++) {
 
@@ -321,20 +322,27 @@ public class Oblig1 {
 
     public static String flett(String... s)
     {
-
-        StringBuilder c = new StringBuilder();
-
-        for (int i = 0; i<s.length; i++)
+        if (s.length == 1)
         {
-            for (int j = 0; j<s.length; j++)
-            {
-                c.append(s[j].charAt(i));
-            }
+            return s[0];
 
         }
 
+        StringBuilder c = new StringBuilder();
+        int i = 0;
+
+        for (; i<=c.length(); i++)
+        {
+            for (int j = 0; j<s.length; j++)
+            {
+                if(i < s[j].length()) {
+                    c.append(s[j].charAt(i));
+                }
+            }
+        }
         return c.toString();
     }
+
 
 
 
@@ -479,6 +487,13 @@ public class Oblig1 {
 
 */
 
+            String gg = "abc";
+            String f = "defghi";
+            String d = "hi";
+            String a = "lmnopqrstuv";
+            String q = "";
+
+        System.out.println(flett(gg,f,d,a,q));
 
 
     }
