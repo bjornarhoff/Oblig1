@@ -20,14 +20,14 @@ public class Oblig1Test {
     public static void main(String[] args) {
         int antallFeil = 0;
 
-        //antallFeil += oppgave1();
-        //antallFeil += oppgave2();  // IKKE FIKSET
-        //antallFeil += oppgave3();
-        //antallFeil += oppgave4();   // IKKE FIKSET
-        //antallFeil += oppgave5();
-        //antallFeil += oppgave6();
+        antallFeil += oppgave1();
+        antallFeil += oppgave2();
+        antallFeil += oppgave3();
+        antallFeil += oppgave4();   // IKKE FIKSET
+        antallFeil += oppgave5();
+        antallFeil += oppgave6();
         //antallFeil += oppgave7();
-        //antallFeil += oppgave8();   // IKKE FIKSET
+        antallFeil += oppgave8();
         antallFeil += oppgave9();
         //antallFeil += oppgave10();
 
@@ -499,7 +499,7 @@ public class Oblig1Test {
     }
 
     ///// Oppgave 7 //////////////////////////////////////
-/*
+
     public static int oppgave7() {
         int antallFeil = 0;
         String s = null;
@@ -622,7 +622,7 @@ public class Oblig1Test {
         }
 
         return antallFeil;
-    } */
+    }
 
     ///// Oppgave 8 //////////////////////////////////////
 
