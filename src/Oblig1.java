@@ -179,7 +179,7 @@ public class Oblig1 {
         return i;
     }
 
-
+/**
     public static int partition(int a[], int v, int h, int skilleverdi) {
         while (true) {
             while (v <= h && a[h] % 2 < skilleverdi) {
@@ -195,6 +195,28 @@ public class Oblig1 {
         }
 
     }
+ */
+
+    public static void partition(int a[], int v, int h) {
+        while (true) {
+            while (v <= h && a[h] % 2 == 0) {
+                h--;
+
+            }
+            while (h >= v && a[v] % 2 != 0) {
+                v++;
+            }
+            if (v < h) {
+                bytt(a, v++, h--);
+            }
+            if (v >= h) {
+                break;
+            }
+        }
+
+
+    }
+
 
 
     // OPPGAVE 3
@@ -222,36 +244,33 @@ public class Oblig1 {
 
     public static void delsortering(int[] a) {
 
-        int partall=0;
-        int oddetall=0;
+        int partall = 0;
+        int oddetall = 0;
 
-        if(a.length == 0)
-        {
+        if (a.length == 0) {
             return;
         }
 
-        partition(a, 0, a.length - 1,1);
+        partition(a, 0, a.length - 1);
 
         for (int i = 0; i < a.length; i++) {
 
-            if(a[i] < 0) {
-                a[i] = a[i] * -1;
-            }
-            if (Math.floorMod(a[i],2) == 0) {
+
+            if (Math.floorMod(a[i], 2) == 0) {
                 partall = partall + 1;
-            }
-             else {
+            } else {
                 oddetall = oddetall + 1;
             }
 
         }
 
-        //System.out.println(Arrays.toString(a));
         quickSort(a, 0, oddetall - 1);
         quickSort(a, oddetall, a.length - 1);
-        // System.out.println(Arrays.toString(a));
+
 
     }
+
+
 
 
     // OPPGAVE 5
