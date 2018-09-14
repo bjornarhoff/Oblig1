@@ -1,14 +1,24 @@
+import com.sun.deploy.util.StringUtils;
+
 import javax.sound.midi.Soundbank;
 import java.lang.reflect.Array;
 
 import java.util.*;
 
+/*
+ SVEN DANEEL (s325867)
+ BJOERNAR HOFF (s325858)
+ STEFFEN BRUVIK (s325874)
+
+ KLASSEN ER TESTET OG GIR BESKJEDEN:
+    Gratulerer!! Du passerte testen!
+  */
 public class Oblig1 {
 
-    // Metode som er til hjelp for å skrive ut tabell
+    // Metode som er til hjelp for aa skrive ut tabell
     public static void skriv(int[] a)
     {
-        System.out.println("Tabellen er nå: ");
+        System.out.println("Tabellen er naa: ");
         for (int item : a) {
             System.out.print(item + ", ");
         }
@@ -38,19 +48,19 @@ public class Oblig1 {
     }
 
     // Det blir gjort (n-1) sammenligninger
-    public static int maks(int[] a)                // Sammenligner to nærliggende verdier og om den til venstre er størst, bytter plass
+    public static int maks(int[] a)                // Sammenligner to naerliggende verdier og om den til venstre er stoerst, bytter plass
     {
 
         if (a.length == 0) {
             throw new NoSuchElementException("Tabellen er tom"); // Kaster en feilmelding om tabellen er tom
         }
 
-        for (int i = 0; i < a.length - 1; i++)           // Bruker a.length -1 fordi antall verdier i arrayet er en større en siste index
+        for (int i = 0; i < a.length - 1; i++)           // Bruker a.length -1 fordi antall verdier i arrayet er en stoerre en siste index
         {
 
             if (a[i] > a[i + 1]) {
-                // Det blir gjort flest ombytninger når tabellen er sortert i synkende rekkefølge
-                // Det blir gjort færrest ombytninger når tabellen er sortert i stigende rekkefølge
+                // Det blir gjort flest ombytninger naar tabellen er sortert i synkende rekkefoelge
+                // Det blir gjort faerrest ombytninger naar tabellen er sortert i stigende rekkefoelge
                 bytt(a, i, i + 1);
             }
         }
@@ -58,20 +68,20 @@ public class Oblig1 {
     }
 
 
-    // Vi kan finne gjennomsnittet av antall ombytninger ved å summere antall ombytninger delt på antall kjøringer.
-    // Ved 10 kjøringer av metoden, med et array med lengde 10, ble det i gjennomsnitt 7,3 ombytninger.
+    // Vi kan finne gjennomsnittet av antall ombytninger ved aa summere antall ombytninger delt paa antall kjoeringer.
+    // Ved 10 kjoeringer av metoden, med et array med lengde 10, ble det i gjennomsnitt 7,3 ombytninger.
     public static int ombyttinger(int[] a) {
         if (a.length == 0) {
             throw new NoSuchElementException("Tabellen er tom"); // Kaster en feilmelding om tabellen er tom
         }
 
         int antOmbytninger = 0;
-        for (int i = 0; i < a.length - 1; i++)           // Bruker a.length -1 fordi antall verdier i arrayet er en større en siste index
+        for (int i = 0; i < a.length - 1; i++)           // Bruker a.length -1 fordi antall verdier i arrayet er en stoerre en siste index
         {
 
             if (a[i] > a[i + 1]) {
-                // Det blir gjort flest ombytninger når tabellen er sortert i synkende rekkefølge
-                // Det blir gjort færrest ombytninger når tabellen er sortert i stigende rekkefølge
+                // Det blir gjort flest ombytninger naar tabellen er sortert i synkende rekkefoelge
+                // Det blir gjort faerrest ombytninger naar tabellen er sortert i stigende rekkefoelge
                 bytt(a, i, i + 1);
                 antOmbytninger++;   // Teller antall ombytninger
             }
@@ -83,13 +93,13 @@ public class Oblig1 {
     // OPPGAVE 2
     // Metode som sjekker antall ulike sortert i en tabell
     public static int antallUlikeSortert(int[] a) {
-        int teller = 1; // Teller satt til 1 fordi første verdi vil alltid være unik
+        int teller = 1; // Teller satt til 1 fordi foerste verdi vil alltid vaere unik
 
         if (a.length < 1) {        // Sjekker om tabellen er tom, hvis den er tom returner den 0
             return 0;
         }
 
-        for (int i = 0; i < a.length-1; i++)            // Looper gjennom lengden på tabellen
+        for (int i = 0; i < a.length-1; i++)            // Looper gjennom lengden paa tabellen
         {
             if (a[i] > a[i + 1]) {                      // Sjekker om tabellen er sortert
                 throw new IllegalStateException("Tabellen er ikke sortert" + "\n");     // Gir tilbakemelding om den ikke er sortert
@@ -97,21 +107,21 @@ public class Oblig1 {
 
         }
 
-        for (int j = 0; j < a.length-1; j++)    // Looper gjennom lengden på tabellen
+        for (int j = 0; j < a.length-1; j++)    // Looper gjennom lengden paa tabellen
         {
-                if (a[j] != a[j + 1])               // Sjekker om to nærliggende verdier er ulik
+                if (a[j] != a[j + 1])               // Sjekker om to naerliggende verdier er ulik
                 {
-                    teller++;                   // Om de er ulik, øker telleren med 1
+                    teller++;                   // Om de er ulik, oeker telleren med 1
                 }
         }
         return teller;
     }
 
 
-    // Metode som lager en tilfeldig tabell med tilfeldige verdier
+    // Metode som lager en tilfeldig tabell med tilfeldige verdiƒer
     public static int[] randomArray(int a) {
-        int[] list = new int[a];            // Lager en liste med størrelse 'a'
-        for (int i = 0; i < a; i++)            // Looper gjennom lengden på tabellen
+        int[] list = new int[a];            // Lager en liste med stoerrelse 'a'
+        for (int i = 0; i < a; i++)            // Looper gjennom lengden paa tabellen
         {
             int n = (int) (Math.random() * 9 + 1); // Oppretter tilfeldige verdier
             list[i] = n;                        // Setter verdiene inn i tabellen
@@ -120,21 +130,21 @@ public class Oblig1 {
     }
 
 
-    // Metode som bruker boblesortering til å sortere tabellen i stigende rekkefølge
+    // Metode som bruker boblesortering til aa sortere tabellen i stigende rekkefoelge
     public static void bubbleSort(int[] a) {
-        for (int n = a.length; n > 1; n--) // For å vite antallet ganger løkken skal kjøre
+        for (int n = a.length; n > 1; n--) // For aa vite antallet ganger loekken skal kjoere
         {
-            for (int i = 1; i < n; i++)        // Kjøre om i er mindre enn antallet
+            for (int i = 1; i < n; i++)        // Kjoere om i er mindre enn antallet
             {
-                if (a[i - 1] > a[i])           // Sjekker om verdien foran er større enn neste
+                if (a[i - 1] > a[i])           // Sjekker om verdien foran er stoerre enn neste
                 {
-                    bytt(a, i - 1, i);      // Bytter plass om verdien er større
+                    bytt(a, i - 1, i);      // Bytter plass om verdien er stoerre
                 }
             }
         }
     }
 
-    // Metode for å sortere tabellen på ved hjelp av quicksort
+    // Metode for aa sortere tabellen paa ved hjelp av quicksort
     public static void quickSort(int a[], int left, int right) {
 
         int index = partition1(a, left, right);     // Partisjonerer i tabell a, fra grense left til right
@@ -149,22 +159,22 @@ public class Oblig1 {
 
     }
 
-    // Metode som partisjonerer ved hjelp av pivot. Sjekker verdier fra venstre og høyre for pivot, og bytter om de
-    // er plassert på feil side av pivot. Metoden skal til slutt ha partisjonert tabellen i stigende rekkefølge.
+    // Metode som partisjonerer ved hjelp av pivot. Sjekker verdier fra venstre og hoeyre for pivot, og bytter om de
+    // er plassert paa feil side av pivot. Metoden skal til slutt ha partisjonert tabellen i stigende rekkefoelge.
     public static int partition1(int arr[], int left, int right) {
         int i = left, j = right;
         int tmp;
         int pivot = arr[(left + right) / 2];    // Oppretter en pivot (midtverdien i tabellen)
 
-        while (i <= j) {                    // Sjekker om left er mindre eller er lik høyre
-            while (arr[i] < pivot)          // Hvis grensen til venstre er mindre enn pivot, øk venstre med 1
+        while (i <= j) {                    // Sjekker om left er mindre eller er lik hoeyre
+            while (arr[i] < pivot)          // Hvis grensen til venstre er mindre enn pivot, oek venstre med 1
                 i++;
 
-            while (arr[j] > pivot)       // Sjekker om right er større enn pivot
-                j--;                    // Minker høyre med 1
+            while (arr[j] > pivot)       // Sjekker om right er stoerre enn pivot
+                j--;                    // Minker hoeyre med 1
 
-            if (i <= j) {               // Hvis venstre er mindre eller lik høyre, bytt om. Og øk venstre med 1
-                tmp = arr[i];           // og mink høyre med 1
+            if (i <= j) {               // Hvis venstre er mindre eller lik hoeyre, bytt om. Og oek venstre med 1
+                tmp = arr[i];           // og mink hoeyre med 1
                 arr[i] = arr[j];
                 arr[j] = tmp;
                 i++;
@@ -205,12 +215,12 @@ public class Oblig1 {
         for (int i = 0; i < a.length; i++) { // Looper igjennom tabellen
             boolean same = false;
             for (int j = 0; j < i; j++) {
-                if (a[i] == a[j]) {  // Sjekker om nærliggende er lik
+                if (a[i] == a[j]) {  // Sjekker om naerliggende er lik
                     same = true;
                     break;
                 }
             }
-            if (!same) {        // Hvis ikke nærliggende er lik, øk antall ulike med 1
+            if (!same) {        // Hvis ikke naerliggende er lik, oek antall ulike med 1
                 different++;
             }
         }
@@ -219,7 +229,7 @@ public class Oblig1 {
 
 
     // OPPGAVE 4
-    // Metode som sorterer partall og oddetall på hver sin side av tabellen
+    // Metode som sorterer partall og oddetall paa hver sin side av tabellen
     public static void delsortering(int[] a) {
 
         int partall = 0;
@@ -229,15 +239,15 @@ public class Oblig1 {
             return;
         }
 
-        partition(a, 0, a.length - 1);  // Kaller på metoden partisjon, for å partisjonere tabellen
+        partition(a, 0, a.length - 1);  // Kaller paa metoden partisjon, for aa partisjonere tabellen
 
         for (int i = 0; i < a.length; i++) {    // Looper igjennom tabellen
 
 
-            if (Math.floorMod(a[i], 2) == 0) {  // Sjekker tallet mot modulo 2 til å finne ut om tallet er partall, øk partall med 1
-                partall = partall + 1;          // Math.floorMod bruker vi for å sjekke negative tall mot modulo.
+            if (Math.floorMod(a[i], 2) == 0) {  // Sjekker tallet mot modulo 2 til aa finne ut om tallet er partall, oek partall med 1
+                partall = partall + 1;          // Math.floorMod bruker vi for aa sjekke negative tall mot modulo.
             } else {
-                oddetall = oddetall + 1;        // Hvis ikke partall, øk oddetall med 1
+                oddetall = oddetall + 1;        // Hvis ikke partall, oek oddetall med 1
             }
 
         }
@@ -252,7 +262,7 @@ public class Oblig1 {
 
 
     // OPPGAVE 5
-    // Metode som roterer en char tabell med èn rotasjon til høyre
+    // Metode som roterer en char tabell med èn rotasjon til hoeyre
     public static void rotasjon(char[] a) {
         int n = a.length;
         int d = 1;
@@ -268,7 +278,7 @@ public class Oblig1 {
         char[] b = Arrays.copyOfRange(a, n - d, n);     // Oppretter en hjelpetabell
 
         for (int i = n - 1; i >= d; i--) {
-                a[i] = a[i - d];        // Forskyver bokstavene en plass til høyre
+                a[i] = a[i - d];        // Forskyver bokstavene en plass til hoeyre
         }
 
         System.arraycopy(b, 0, a, 0, d);                      // Kopierer arrayet
@@ -277,7 +287,7 @@ public class Oblig1 {
 
 
     // OPPGAVE 6
-    // Metode som roterer en char tabell med ønsket antall rotasjoner
+    // Metode som roterer en char tabell med oensket antall rotasjoner
     public static void rotasjon(char[] a, int k) {
         int n = a.length;
 
@@ -292,7 +302,7 @@ public class Oblig1 {
         char[] b = Arrays.copyOfRange(a, n - k, n);     // Oppretter en hjelpetabell
 
         for (int i = n - 1; i >= k; i--) {
-            a[i] = a[i - k];            // Forskyver bokstavene en plass til høyre
+            a[i] = a[i - k];            // Forskyver bokstavene en plass til hoeyre
         }
 
         System.arraycopy(b, 0, a, 0, k);                      // Kopierer arrayet
@@ -303,16 +313,16 @@ public class Oblig1 {
     // OPPGAVE 7 a
     // Metode som fletter sammen bokstaver fra to forskjellige ord
     public static String flett(String a, String b){
-        StringBuilder c = new StringBuilder(); // Oppretter stringbuilder for å holde på utfallet
+        StringBuilder c = new StringBuilder(); // Oppretter stringbuilder for aa holde paa utfallet
         int i = 0;
 
         for(; i< a.length(); ++i){
             c.append(a.charAt(i));
             if(i < b.length()){
                 c.append(b.charAt(i));
-            }                                           // Looper igjennom lengden på begge string verdiene,
+            }                                           // Looper igjennom lengden paa begge string verdiene,
         }                                               // sjekker om indeksen til hver bokstav,
-            if(i < b.length()){                         // og plasserer bokstavene i stringbuilder. Øker 'i' for hver indeks
+            if(i < b.length()){                         // og plasserer bokstavene i stringbuilder. oeker 'i' for hver indeks
             for(; i<b.length(); ++i){
                 c.append(b.charAt(i));
             }
@@ -334,11 +344,11 @@ public class Oblig1 {
         StringBuilder c = new StringBuilder();  // Oppretter stringbuilder
         int i = 0;
 
-        for (; i<=c.length(); i++)                  // Looper så lenge i er mindre enn Stringbuilders lengde
+        for (; i<=c.length(); i++)                  // Looper saa lenge i er mindre enn Stringbuilders lengde
         {
             for (int j = 0; j<s.length; j++)        // Definerer to variabler i og j. i er antall ord/string.
             {                                       // j er indeksen i hvert ord
-                if(i < s[j].length()) {             // Hvis i er mindre enn verdien til lengden j, så plasser verdien
+                if(i < s[j].length()) {             // Hvis i er mindre enn verdien til lengden j, saa plasser verdien
                     c.append(s[j].charAt(i));       // i Stringbuilder
                 }
             }
@@ -372,16 +382,16 @@ public class Oblig1 {
     }
 
 
-    // Metode for å sortere indeks med ulike verdier
+    // Metode for aa sortere indeks med ulike verdier
     public static int[] indekssortering(int[] a) {
         int[] indekstabell = new int[a.length];         // Oppretter en indeks tabell med lengden av tabellen a
-        int[] a_clone = a.clone();                      // Kloner av for å ikke gjøre endringer på tabellen a
+        int[] a_clone = a.clone();                      // Kloner av for aa ikke gjoere endringer paa tabellen a
 
-        for (int i = 0; i < a.length; i++) {            // Looper igjennom for å angi hver indeks
+        for (int i = 0; i < a.length; i++) {            // Looper igjennom for aa angi hver indeks
             indekstabell[i] = i;
         }
 
-        // Finner minsteverdi, og gir minsteverdi den minste indeksen. Looper igjennom og gir hver verdi indeks i riktig rekkfølge
+        // Finner minsteverdi, og gir minsteverdi den minste indeksen. Looper igjennom og gir hver verdi indeks i riktig rekkfoelge
         for (int i = 0; i < a.length - 1; i++) {
             int indeks = min(a_clone, i, a.length);
             bytt(a_clone, i, indeks);
@@ -398,9 +408,9 @@ public class Oblig1 {
     public static int[] tredjeMin(int[] a) {
         int n = a.length;       // Lengden til tabellen
 
-        if (n < 3)     // Må ha minst 3 verdier
+        if (n < 3)     // Maa ha minst 3 verdier
         {
-            throw new NoSuchElementException("Tabellen er ugyldig. Må ha minst 3 verdier");
+            throw new NoSuchElementException("Tabellen er ugyldig. Maa ha minst 3 verdier");
         }
 
         int m = 0;              // Posisjonen til den minste verdien
@@ -408,9 +418,9 @@ public class Oblig1 {
         int tm = 2;             // Posisjonen til den tredje minste verdi
 
 
-        // Sjekker verdiene for å finne minsteverdi, nestminste og tredjeminste
-        // Utfører byttinger for hver verdi som ikke tilfredstiller kravene
-        // Får minsteverdi plassert først
+        // Sjekker verdiene for aa finne minsteverdi, nestminste og tredjeminste
+        // Utfoerer byttinger for hver verdi som ikke tilfredstiller kravene
+        // Faar minsteverdi plassert foerst
         if (a[m] > a[nm])
         {
             m = 1;
@@ -444,57 +454,38 @@ public class Oblig1 {
 
 
 
-                        // OPPGAVE 10
+    // OPPGAVE 10
+    // Metoden sjekker om en String a er representert i en String b
+    public static boolean inneholdt(String a, String b)
+    {
+         char [] first = a.toCharArray();       // Splitter String inn i en char tabell
+         char [] second = b.toCharArray();
 
-    public static boolean inneholdt(String a, String b) {
-        boolean status = true;
-
-        Map<String,Integer> WordA=new HashMap<>();  // Lagrer informasjon om antall unike bookstaver og antall forekomster
-        Map <String,Integer> WordB=new HashMap<>();  // Lagrer informasjon om antall unike bookstaver og antall forekomster
-
-        for(char i:a.toCharArray()){                   // Looper gjennom første ordet A og lagrer unike bokstaver og antall forekomster i hashmap
-            Integer valueA = WordA.get(""+i);
-            if(valueA != null){
-                WordA.put(""+i, valueA+1);
-            } else {
-                WordA.put(""+i, 1);
-            }
+        if (a.length() > b.length())      // Sjekker om lengden av a er større enn b
+        {
+            return false;
         }
 
-        for(char i: b.toCharArray()){               // Looper gjennom første ordet B og lagrer unike bokstaver og antall forekomster i hashmap
-            Integer valueB = WordB.get(""+i);
-            if(valueB != null){
-                WordB.put(""+i, valueB+1);
-            } else {
-                WordB.put(""+i,1);
-            }
+        int [] hTabell1 = new int[256];   // Oppretter hjelpetabeller
+        int [] hTabell2 = new int[256];
+
+        for (char x : first)
+        {
+            hTabell1[x]++;     // Teller tegnene i 'first'. Feks: ordet ABBA. Stor A har unicode verdi 41 og da vil hTabell1[41] ha verdien 2 etter denne for løkken
+        }
+        for (char x : second)
+        {
+            hTabell2[x]++;     // Teller tegnene i 'second'
         }
 
-        for(Map.Entry <String,Integer> entry: WordA.entrySet()){            // 
-            if (WordB.get(entry.getKey()) == null || entry.getValue() >
-                    WordB.get(entry.getKey())) {
-                status = false;
+        for (int i = 0; i < 256; i++)           // Looper igjennom 256 indekser for å sjekke opp mot alle aktuelle unicode verdier
+        {
+            if (hTabell1[i] > hTabell2[i])      // Sjekker om antallet av en forekomst i det første ordet er større enn antallet av samme forekomst i det andre ordet.
+            {
+                return false;
             }
         }
-        return status;
+        return true;
     }
 
-
-
-
-
-
-
-    public static void main(String[] args) {
-
-            String gg = "abc";
-            String f = "defghi";
-            String d = "hi";
-            String a = "lmnopqrstuv";
-            String q = "";
-
-        System.out.println(flett(gg,f,d,a,q));
-
-
-    }
 }
