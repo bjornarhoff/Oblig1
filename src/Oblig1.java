@@ -11,6 +11,7 @@ import java.util.*;
  STEFFEN BRUVIK (s325874)
 
  KLASSEN ER TESTET OG GIR BESKJEDEN:
+
     Gratulerer!! Du passerte testen!
   */
 public class Oblig1 {
